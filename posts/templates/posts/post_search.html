@@ -4,6 +4,6 @@
     {% if not request.GET.search %}
         Empty Search |
     {% else %}
-        {{ request.GET.search }} |
+        {{ request.GET.search|title }} | Search |
     {% endif %}
 {% endblock %}

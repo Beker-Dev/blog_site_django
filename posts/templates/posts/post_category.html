@@ -1,5 +1,5 @@
 {% extends 'posts/index.html' %}
 
 {% block 'title' %}
-    {{ category_name }} |
+    {{ view.kwargs.category|title }} |
 {% endblock %}
