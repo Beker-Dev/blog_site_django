@@ -6,6 +6,7 @@ from django.db.models import Q, Case, Count, When
 from .models import Post
 from comments.models import Comment, CommentForm
 from django.contrib import messages
+from django.db import connection
 
 
 class PostIndex(ListView):
@@ -16,6 +17,7 @@ class PostIndex(ListView):
 
     def get_queryset(self):
         qs = super().get_queryset()
+        qs = qs.select_related('category')  # it reduces the number of queries
         qs = qs.filter(is_published=True).order_by('id').reverse()
         qs = qs.annotate(
             total_comments=Count(
