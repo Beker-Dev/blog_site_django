@@ -1,0 +1,9 @@
+{% extends 'posts/index.html' %}
+
+{% block 'title' %}
+    {% if not request.GET.search %}
+        Empty Search |
+    {% else %}
+        {{ request.GET.search }} |
+    {% endif %}
+{% endblock %}

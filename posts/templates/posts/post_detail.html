@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block 'title' %}
+    {{ post.title }} |
+{% endblock %}
+
+{% block 'content' %}
+    <!-- POST -->
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-xl"></div>
+            <div class="col-xl-8 text-center">
+                <h2>{{ post.title }}</h2>
+                <h5>{{ post.excerpt }}</h5>
+                <p class="text-muted mt-4">
+                    <small>
+                        {{ post.author }} | {{ post.date|naturalday|title }} | {{ post.category }}
+                    </small>
+                </p>
+            </div>
+            <div class="col-xl"></div>
+        </div>
+
+        <div class="row pt-5">
+            <div class="col-xl"></div>
+            <div class="col-xl-8">
+
+                {% if post.image %}
+                    <img class="img-fluid pb-5 " src="{{ post.image.url }}" alt="">
+                {% endif %}
+
+            {{ post.content|safe }}
+
+            </div>
+            <div class="col-xl"></div>
+        </div>
+
+        {% if comments %}
+        <div class="row pt-5">
+            <div class="col-xl"></div>
+            <div class="col-xl-8">
+                <h2 class="my-3">Comments ({{ comments.count }})</h2>
+
+                {% for comment in comments %}
+                <h5 class="mb-2 mt-5">{{ comment.name }} said:</h5>
+                <small class="text-muted">{{ comment.date|naturalday|title }}</small>
+                <p class="mb-1">{{ comment.comment }}&lt;</p>
+                {% endfor %}
+
+            </div>
+            <div class="col-xl"></div>
+        </div>
+        {% endif %}
+
+        <div class="row pt-5">
+            <div class="col-xl"></div>
+            <div class="col-xl-8">
+                <h2 class="my-3">Leave a comment</h2>
+
+                <form method="POST" action="#send_comment">
+                    {% csrf_token %}
+                    <table class="table">
+                       {{ form }}
+                        <tr>
+                            <td colspan="2">
+                                {% include 'partials/_messages.html' %}
+                                <input id="send_comment" name="send_comment" type="submit" class="btn btn-primary"
+                                       value="Send Comment">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+
+            </div>
+            <div class="col-xl"></div>
+        </div>
+    </div>
+    <!-- POST -->
+{% endblock %}
