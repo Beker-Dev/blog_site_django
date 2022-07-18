@@ -68,6 +68,8 @@
                     {% for visible_field in form.visible_fields %}
                         {{ visible_field|as_crispy_field }}
                     {% endfor %}
+                    <div class="g-recaptcha" data-sitekey="6LfN3P4gAAAAAHgmWdmHhCayQAHoLjxaKY7VpuGh"></div>
+                    <br/>
                     <tr>
                         <td colspan="2">
                             {% include 'partials/_messages.html' %}
