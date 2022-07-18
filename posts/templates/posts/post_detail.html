@@ -42,9 +42,9 @@
                 <h2 class="my-3">Comments ({{ comments.count }})</h2>
 
                 {% for comment in comments %}
-                    <h5 class="mb-2 mt-5">{{ comment.name }} said:</h5>
+                    <h5 class="mb-2 mt-5">{{ comment.name|title }} said:</h5>
                     <small class="text-muted">{{ comment.date|naturalday|title }}</small>
-                    <p class="mb-1">{{ comment.comment }}&lt;</p>
+                    <p class="mb-1">{{ comment.comment }}</p>
                 {% endfor %}
 
             </div>
