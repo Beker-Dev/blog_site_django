@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load humanize %}
+{% load post_filters %}
 
 {% block 'title' %}
 Index |
@@ -29,7 +30,7 @@ Index |
                     <p class="card-text">{{ post.excerpt }}</p>
                     <p class="card-text">
                         <small class="text-muted">
-                            {{ post.date|naturalday|title }} | {{ post.total_comments }} comments | {{ post.category }}
+                            {{ post.date|naturalday|title }} | {{ post.total_comments|count_comments }} | {{ post.category }}
                         </small>
                     </p>
 
